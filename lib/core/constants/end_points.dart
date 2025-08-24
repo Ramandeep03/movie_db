@@ -1,3 +1,3 @@
 class EndPoints {
-  static final String popularMovies = "movie/popular";
+  static const String popularMovies = "movie/popular";
 }
