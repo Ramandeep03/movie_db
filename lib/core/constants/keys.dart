@@ -4,5 +4,5 @@ class Keys {
   static final String apiKeyCap = "API_KEY";
 
   /// MARK:- API keys
-  static final String apiKey = "api_key";
+  static final String apiKey = 'api_key';
 }

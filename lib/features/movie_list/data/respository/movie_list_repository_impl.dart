@@ -14,12 +14,9 @@ class MovieListRepositoryImpl implements MovieListRepository {
 
   @override
   Future<Either<Failure, BaseResponseModel<List<MovieModel>>>>
-  getNowPlayingMovies({required DateTime startDate}) async {
+  getNowPlayingMovies() async {
     try {
-      final response = await _getMoviesService.getNowPlayingMovies(
-        minDate: startDate,
-        maxDate: startDate.add(const Duration(days: 7)),
-      );
+      final response = await _getMoviesService.getNowPlayingMovies();
 
       return Right(response);
     } on DioException catch (e) {
@@ -58,13 +55,12 @@ class MovieListRepositoryImpl implements MovieListRepository {
   }
 
   @override
-  Future<Either<Failure, BaseResponse<List<MovieModel>>>> getUpcomingMovies({
-    required DateTime startDate,
-  }) async {
+  Future<Either<Failure, BaseResponse<List<MovieModel>>>>
+  getUpcomingMovies() async {
     try {
       final response = await _getMoviesService.getUpcomingMovies(
-        minDate: startDate,
-        maxDate: startDate.add(const Duration(days: 7)),
+        // minDate: startDate,
+        // maxDate: startDate.add(const Duration(days: 7)),
       );
 
       return Right(response);

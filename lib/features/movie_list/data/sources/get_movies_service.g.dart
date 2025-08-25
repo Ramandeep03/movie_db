@@ -19,31 +19,17 @@ class _GetMoviesService implements GetMoviesService {
 
   @override
   Future<BaseResponseModel<List<MovieModel>>> getNowPlayingMovies({
-    bool includeAdult = false,
-    bool includeVideo = true,
     String language = 'en-US',
-    String sortBy = 'popularity.desc',
-    String withReleaseType = '2|3',
-    required DateTime minDate,
-    required DateTime maxDate,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'include_adult': includeAdult,
-      r'include_video': includeVideo,
-      r'language': language,
-      r'sort_by': sortBy,
-      r'with_release_type': withReleaseType,
-      r'release_date.gte': minDate.toIso8601String(),
-      r'release_date.lte': maxDate.toIso8601String(),
-    };
+    final queryParameters = <String, dynamic>{r'language': language};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<BaseResponseModel<List<MovieModel>>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'discover/movie',
+            'movie/now_playing',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -71,25 +57,17 @@ class _GetMoviesService implements GetMoviesService {
 
   @override
   Future<BaseResponseModel<List<MovieModel>>> getPopularMovies({
-    bool includeAdult = false,
-    bool includeVideo = true,
     String language = 'en-US',
-    String sortBy = 'popularity.desc',
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'include_adult': includeAdult,
-      r'include_video': includeVideo,
-      r'language': language,
-      r'sort_by': sortBy,
-    };
+    final queryParameters = <String, dynamic>{r'language': language};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<BaseResponseModel<List<MovieModel>>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'discover/movie',
+            'movie/popular',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -117,29 +95,17 @@ class _GetMoviesService implements GetMoviesService {
 
   @override
   Future<BaseResponseModel<List<MovieModel>>> getTopRatedMovies({
-    bool includeAdult = false,
-    bool includeVideo = true,
     String language = 'en-US',
-    String sortBy = 'vote_average.desc',
-    String withReleaseType = '99,10755',
-    int voteAverage = 200,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'include_adult': includeAdult,
-      r'include_video': includeVideo,
-      r'language': language,
-      r'sort_by': sortBy,
-      r'without_genres': withReleaseType,
-      r'vote_count.gte': voteAverage,
-    };
+    final queryParameters = <String, dynamic>{r'language': language};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<BaseResponseModel<List<MovieModel>>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'discover/movie',
+            'movie/top_rated',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -167,31 +133,17 @@ class _GetMoviesService implements GetMoviesService {
 
   @override
   Future<BaseResponseModel<List<MovieModel>>> getUpcomingMovies({
-    bool includeAdult = false,
-    bool includeVideo = true,
     String language = 'en-US',
-    String sortBy = 'popularity.desc',
-    String withReleaseType = '2|3',
-    required DateTime minDate,
-    required DateTime maxDate,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'include_adult': includeAdult,
-      r'include_video': includeVideo,
-      r'language': language,
-      r'sort_by': sortBy,
-      r'with_release_type': withReleaseType,
-      r'release_date.gte': minDate.toIso8601String(),
-      r'release_date.lte': maxDate.toIso8601String(),
-    };
+    final queryParameters = <String, dynamic>{r'language': language};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<BaseResponseModel<List<MovieModel>>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'discover/movie',
+            'movie/upcoming',
             queryParameters: queryParameters,
             data: _data,
           )

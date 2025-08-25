@@ -1,4 +1,5 @@
 import 'package:movie_db/core/bloc/pagination_bloc/pagination_bloc.dart';
+import 'package:movie_db/core/usecase/usecase.dart';
 import 'package:movie_db/data/models/movie_model.dart';
 import 'package:movie_db/features/movie_list/domain/usecase/get_upcoming_movies_usecase.dart';
 
@@ -12,9 +13,7 @@ class GetUpcomingMoviesBloc extends PaginationBloc<MovieModel> {
     required int limit,
     Map<String, dynamic>? filters,
   }) async {
-    final response = await _getUpcomingMoviesUsecase.call(
-      filters?['startDate'],
-    );
+    final response = await _getUpcomingMoviesUsecase.call(NoParams());
     final List<MovieModel> data = response.fold(
       (error) => [],
       (data) =>

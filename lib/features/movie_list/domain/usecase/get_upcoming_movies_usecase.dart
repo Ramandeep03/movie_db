@@ -6,13 +6,13 @@ import 'package:movie_db/data/entities/movie.dart';
 import 'package:movie_db/features/movie_list/domain/repository/movie_list_repository.dart';
 
 class GetUpcomingMoviesUsecase
-    implements UseCase<BaseResponse<List<Movie>>, DateTime> {
+    implements UseCase<BaseResponse<List<Movie>>, NoParams> {
   final MovieListRepository _movieListRepository;
 
   GetUpcomingMoviesUsecase(this._movieListRepository);
 
   @override
-  Future<Either<Failure, BaseResponse<List<Movie>>>> call(DateTime startDate) {
-    return _movieListRepository.getUpcomingMovies(startDate: startDate);
+  Future<Either<Failure, BaseResponse<List<Movie>>>> call(NoParams noParams) {
+    return _movieListRepository.getUpcomingMovies();
   }
 }
