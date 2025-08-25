@@ -34,4 +34,31 @@ class MovieDetailModel extends MoviesDetail {
       _$MovieDetailModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$MovieDetailModelToJson(this);
+
+  factory MovieDetailModel.fromEntity(MoviesDetail entity) {
+    return MovieDetailModel(
+      id: entity.id,
+      adult: entity.adult,
+      backdropPath: entity.backdropPath,
+      belongToCollection: entity.belongToCollection,
+      budget: entity.budget,
+      genreIds: entity.genreIds,
+      homePage: entity.homePage,
+      imdbId: entity.imdbId,
+      originalLanguage: entity.originalLanguage,
+      originalTitle: entity.originalTitle,
+      overview: entity.overview,
+      popularity: entity.popularity,
+      posterPath: entity.posterPath,
+      releaseDate: entity.releaseDate,
+      revenue: entity.revenue,
+      runtime: entity.runtime,
+      status: entity.status,
+      tagline: entity.tagline,
+      title: entity.title,
+      video: entity.video,
+      voteAverage: entity.voteAverage,
+      voteCount: entity.voteCount,
+    );
+  }
 }
