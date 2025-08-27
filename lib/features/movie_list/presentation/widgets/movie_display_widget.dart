@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_db/core/bloc/pagination_bloc/pagination_bloc.dart';
 import 'package:movie_db/core/enums/list_display_type.dart';
 import 'package:movie_db/data/models/movie_model.dart';
@@ -32,14 +33,14 @@ class MovieDisplayWidget<
           return Center(child: Text(state.error));
         }
         if (state is PaginationLoaded<MovieModel>) {
-          return _getListType(state.items);
+          return _getListType(state.items, context);
         }
         return const SizedBox.shrink();
       },
     );
   }
 
-  Widget _getListType(List<MovieModel> movies) {
+  Widget _getListType(List<MovieModel> movies, BuildContext context) {
     switch (displayType) {
       case ListDisplayType.list:
         return MovieListWidget(
@@ -52,7 +53,9 @@ class MovieDisplayWidget<
       case ListDisplayType.carousel:
         return MovieCarousel(
           movies: movies,
-          onViewDetails: (movie) {},
+          onViewDetails: (movie) {
+            context.push('/movie-detail/${movie.id}');
+          },
           onAddToFavourite: (movie) {},
         );
     }

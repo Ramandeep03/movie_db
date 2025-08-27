@@ -1,7 +1,5 @@
-import 'package:movie_db/data/entities/base_response.dart';
 import 'package:movie_db/data/entities/movie.dart';
 import 'package:movie_db/features/movie_detail/domain/entity/genres.dart';
-import 'package:movie_db/features/movie_detail/domain/entity/videos.dart';
 
 class MoviesDetail extends Movie {
   final String? belongToCollection;
@@ -13,9 +11,6 @@ class MoviesDetail extends Movie {
   final String? status;
   final String? tagline;
   final List<Genres>? genres;
-  final BaseResponse<List<Videos>>? videos;
-  final BaseResponse<List<Movie>>? similar;
-  final BaseResponse<List<Movie>>? recommendations;
 
   MoviesDetail({
     super.adult,
@@ -41,8 +36,5 @@ class MoviesDetail extends Movie {
     this.status,
     this.tagline,
     this.genres,
-    this.recommendations,
-    this.similar,
-    this.videos,
   });
 }

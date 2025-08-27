@@ -10,10 +10,10 @@ part 'base_response_model.g.dart';
 )
 class BaseResponseModel<T> extends BaseResponse<T> {
   BaseResponseModel({
-    required super.page,
+    super.page,
     required super.results,
-    required super.totalPages,
-    required super.totalResults,
+    super.totalPages,
+    super.totalResults,
   });
 
   factory BaseResponseModel.fromJson(

@@ -11,7 +11,7 @@ class MovieDB extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
       routerConfig: AppRouter.router,
-      theme: AppTheme.theme,
+      theme: darkTheme,
     );
   }
 }

@@ -11,7 +11,5 @@ abstract class MovieDetailService {
   @GET('movie/{movie_id}')
   Future<MovieDetailModel> getMovieDetail({
     @Path('movie_id') required int movieId,
-    @Query('append_to_response')
-    String appendToResponse = 'videos%2Csimilar%2Crecommendations',
   });
 }

@@ -10,10 +10,10 @@ BaseResponseModel<T> _$BaseResponseModelFromJson<T>(
   Map<String, dynamic> json,
   T Function(Object? json) fromJsonT,
 ) => BaseResponseModel<T>(
-  page: (json['page'] as num).toInt(),
+  page: (json['page'] as num?)?.toInt(),
   results: fromJsonT(json['results']),
-  totalPages: (json['total_pages'] as num).toInt(),
-  totalResults: (json['total_results'] as num).toInt(),
+  totalPages: (json['total_pages'] as num?)?.toInt(),
+  totalResults: (json['total_results'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$BaseResponseModelToJson<T>(

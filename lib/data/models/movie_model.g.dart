@@ -21,7 +21,7 @@ MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel(
   releaseDate: json['release_date'] as String?,
   title: json['title'] as String?,
   video: json['video'] as bool?,
-  voteAverage: (json['vote_average'] as num?)?.toInt(),
+  voteAverage: (json['vote_average'] as num?)?.toDouble(),
   voteCount: (json['vote_count'] as num?)?.toInt(),
 );
 

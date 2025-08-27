@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_db/config/theme/app_colors.dart';
 import 'package:movie_db/data/models/movie_model.dart';
 import 'package:movie_db/features/movie_list/presentation/widgets/movie_tile_small.dart';
 
@@ -35,7 +36,14 @@ class MovieListWidget extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: onSeeAllClicked,
-                  child: const Text("See All"),
+                  child: const Text(
+                    "See All",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
                 ),
               ],
             ),

@@ -1,8 +1,8 @@
 class BaseResponse<T> {
-  final int page;
+  final int? page;
   final T results;
-  final int totalPages;
-  final int totalResults;
+  final int? totalPages;
+  final int? totalResults;
 
   BaseResponse({
     required this.page,

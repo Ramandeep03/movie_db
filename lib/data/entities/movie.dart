@@ -11,7 +11,7 @@ class Movie {
   final String? releaseDate;
   final String? title;
   final bool? video;
-  final int? voteAverage;
+  final double? voteAverage;
   final int? voteCount;
 
   Movie({

@@ -45,8 +45,6 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 12), // spacing from edge
               child: GlassmorphicContainer(
-                height: 50,
-                width: 50,
                 shape: BoxShape.circle,
                 child: IconButton(
                   onPressed: () {

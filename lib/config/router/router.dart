@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_db/core/bloc/pagination_bloc/pagination_bloc.dart';
 import 'package:movie_db/core/di/dependency_injector.dart';
+import 'package:movie_db/features/movie_detail/presentation/bloc/movie_detail_bloc.dart';
 import 'package:movie_db/features/movie_detail/presentation/screens/movie_detail_screen.dart';
 import 'package:movie_db/features/movie_list/presentation/bloc/get_now_playing_movies_bloc.dart';
 import 'package:movie_db/features/movie_list/presentation/bloc/get_top_rated_movies_bloc.dart';
@@ -54,9 +55,9 @@ class AppRouter {
         builder: (context, state) {
           final movieId = state.pathParameters['movie_id'];
 
-          return BlocProvider<SearchMovieBloc>(
-            create: (context) => sl<SearchMovieBloc>(),
-            child: MovieDetailScreen(movieId: movieId!),
+          return BlocProvider<MovieDetailBloc>(
+            create: (context) => sl<MovieDetailBloc>(),
+            child: MovieDetailScreen(movieId: int.tryParse(movieId!) ?? 0),
           );
         },
       ),

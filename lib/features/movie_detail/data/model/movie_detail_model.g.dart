@@ -30,35 +30,11 @@ MovieDetailModel _$MovieDetailModelFromJson(Map<String, dynamic> json) =>
       tagline: json['tagline'] as String?,
       title: json['title'] as String?,
       video: json['video'] as bool?,
-      voteAverage: (json['vote_average'] as num?)?.toInt(),
+      voteAverage: (json['vote_average'] as num?)?.toDouble(),
       voteCount: (json['vote_count'] as num?)?.toInt(),
       genres: (json['genres'] as List<dynamic>?)
           ?.map((e) => GenresModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      recommendations: json['recommendations'] == null
-          ? null
-          : BaseResponseModel<List<MovieModel>>.fromJson(
-              json['recommendations'] as Map<String, dynamic>,
-              (value) => (value as List<dynamic>)
-                  .map((e) => MovieModel.fromJson(e as Map<String, dynamic>))
-                  .toList(),
-            ),
-      similar: json['similar'] == null
-          ? null
-          : BaseResponseModel<List<MovieModel>>.fromJson(
-              json['similar'] as Map<String, dynamic>,
-              (value) => (value as List<dynamic>)
-                  .map((e) => MovieModel.fromJson(e as Map<String, dynamic>))
-                  .toList(),
-            ),
-      videos: json['videos'] == null
-          ? null
-          : BaseResponseModel<List<VideoModel>>.fromJson(
-              json['videos'] as Map<String, dynamic>,
-              (value) => (value as List<dynamic>)
-                  .map((e) => VideoModel.fromJson(e as Map<String, dynamic>))
-                  .toList(),
-            ),
     );
 
 Map<String, dynamic> _$MovieDetailModelToJson(MovieDetailModel instance) =>
@@ -86,13 +62,4 @@ Map<String, dynamic> _$MovieDetailModelToJson(MovieDetailModel instance) =>
       'status': instance.status,
       'tagline': instance.tagline,
       'genres': instance.genres?.map((e) => e.toJson()).toList(),
-      'videos': instance.videos?.toJson(
-        (value) => value.map((e) => e.toJson()).toList(),
-      ),
-      'similar': instance.similar?.toJson(
-        (value) => value.map((e) => e.toJson()).toList(),
-      ),
-      'recommendations': instance.recommendations?.toJson(
-        (value) => value.map((e) => e.toJson()).toList(),
-      ),
     };

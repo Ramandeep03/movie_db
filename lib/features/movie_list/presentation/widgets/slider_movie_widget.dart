@@ -28,28 +28,46 @@ class SliderMovieWidget extends StatelessWidget {
         Container(
           decoration: BoxDecoration(color: Colors.black.withOpacity(0.5)),
         ),
-        ImageFiltered(imageFilter: ImageFilter.blur(sigmaX: 2)),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: 20,
-          children: [
-            Text(movie.title ?? ''),
-            Text(movie.overview ?? ''),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+        ImageFiltered(
+          imageFilter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+          child: Container(color: Colors.transparent),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch, // full width
               children: [
+                Text(
+                  movie.title ?? '',
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () => onViewDetails(movie),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50), // make tall & wide
+                  ),
                   child: const Text("View Details"),
                 ),
-                const SizedBox(width: 16),
+                const SizedBox(height: 12),
                 OutlinedButton(
                   onPressed: () => onAddToFavourite(movie),
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50), // full width
+                  ),
                   child: const Text("Add to Favourite"),
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ],
     );
