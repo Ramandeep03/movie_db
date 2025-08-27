@@ -1,10 +1,25 @@
+import 'package:movie_db/data/models/base_response_model.dart';
+import 'package:movie_db/data/models/movie_model.dart';
+import 'package:movie_db/features/movie_detail/data/model/genres_model.dart';
+import 'package:movie_db/features/movie_detail/data/model/video_model.dart';
 import 'package:movie_db/features/movie_detail/domain/entity/movies_detail.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'movie_detail_model.g.dart';
 
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class MovieDetailModel extends MoviesDetail {
+  @override
+  final List<GenresModel>? genres;
+
+  @override
+  final BaseResponseModel<List<VideoModel>>? videos;
+
+  @override
+  final BaseResponseModel<List<MovieModel>>? similar;
+
+  @override
+  final BaseResponseModel<List<MovieModel>>? recommendations;
   MovieDetailModel({
     required super.id,
     super.adult,
@@ -28,7 +43,16 @@ class MovieDetailModel extends MoviesDetail {
     super.video,
     super.voteAverage,
     super.voteCount,
-  });
+    this.genres,
+    this.recommendations,
+    this.similar,
+    this.videos,
+  }) : super(
+         genres: genres,
+         recommendations: recommendations,
+         similar: similar,
+         videos: videos,
+       );
 
   factory MovieDetailModel.fromJson(Map<String, dynamic> json) =>
       _$MovieDetailModelFromJson(json);
@@ -59,6 +83,17 @@ class MovieDetailModel extends MoviesDetail {
       video: entity.video,
       voteAverage: entity.voteAverage,
       voteCount: entity.voteCount,
+      genres: entity.genres?.map((g) => GenresModel.fromEntity(g)).toList(),
+      videos: entity.videos != null
+          ? BaseResponseModel<List<VideoModel>>(
+              page: entity.videos!.page,
+              results: entity.videos!.results
+                  .map((v) => VideoModel.fromEntity(v))
+                  .toList(),
+              totalPages: entity.videos!.totalPages,
+              totalResults: entity.videos!.totalResults,
+            )
+          : null,
     );
   }
 }

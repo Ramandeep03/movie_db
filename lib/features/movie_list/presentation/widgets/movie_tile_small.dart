@@ -12,34 +12,33 @@ class MovieTileSmall extends StatelessWidget {
       width: 150,
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.3), // semi-transparent background
+        color: Colors.black.withOpacity(0.3),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Poster image
           ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
             child: Image.network(
               "https://image.tmdb.org/t/p/w500${movie.posterPath}",
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
             ),
           ),
-
-          // Movie title
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Text(
-              movie.originalTitle ?? "No Title",
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                overflow: TextOverflow.ellipsis,
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Text(
+                movie.originalTitle ?? "No Title",
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 2,
               ),
-              textAlign: TextAlign.center,
-              maxLines: 2,
             ),
           ),
         ],

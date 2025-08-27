@@ -6,6 +6,7 @@ part 'base_response_model.g.dart';
 @JsonSerializable(
   fieldRename: FieldRename.snake,
   genericArgumentFactories: true,
+  explicitToJson: true,
 )
 class BaseResponseModel<T> extends BaseResponse<T> {
   BaseResponseModel({

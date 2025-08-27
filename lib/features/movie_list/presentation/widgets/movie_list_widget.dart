@@ -5,7 +5,13 @@ import 'package:movie_db/features/movie_list/presentation/widgets/movie_tile_sma
 class MovieListWidget extends StatelessWidget {
   final List<MovieModel> movies;
   final String title;
-  const MovieListWidget({super.key, required this.movies, required this.title});
+  final VoidCallback onSeeAllClicked;
+  const MovieListWidget({
+    super.key,
+    required this.movies,
+    required this.title,
+    required this.onSeeAllClicked,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +19,7 @@ class MovieListWidget extends StatelessWidget {
       height: 380,
       padding: const EdgeInsets.only(top: 20),
       child: Column(
+        spacing: 10,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
@@ -26,12 +33,13 @@ class MovieListWidget extends StatelessWidget {
                     context,
                   ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                 ),
-                TextButton(onPressed: () {}, child: const Text("See All")),
+                TextButton(
+                  onPressed: onSeeAllClicked,
+                  child: const Text("See All"),
+                ),
               ],
             ),
           ),
-          const SizedBox(height: 10),
-
           Expanded(
             child: ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 20),

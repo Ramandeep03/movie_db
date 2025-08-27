@@ -18,9 +18,14 @@ class _MovieDetailService implements MovieDetailService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<MovieDetailModel> getMovieDetail({required int movieId}) async {
+  Future<MovieDetailModel> getMovieDetail({
+    required int movieId,
+    String appendToResponse = 'videos%2Csimilar%2Crecommendations',
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'append_to_response': appendToResponse,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<MovieDetailModel>(

@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'movie_model.g.dart';
 
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class MovieModel extends Movie {
   MovieModel({
     super.adult,
@@ -42,5 +42,21 @@ class MovieModel extends Movie {
     video: movie.video,
     voteAverage: movie.voteAverage,
     voteCount: movie.voteCount,
+  );
+
+  Movie toEntity() => Movie(
+    id: id,
+    adult: adult,
+    backdropPath: backdropPath,
+    genreIds: genreIds,
+    originalLanguage: originalLanguage,
+    originalTitle: originalTitle,
+    overview: overview,
+    popularity: popularity,
+    posterPath: posterPath,
+    title: title,
+    video: video,
+    voteAverage: voteAverage,
+    voteCount: voteCount,
   );
 }
