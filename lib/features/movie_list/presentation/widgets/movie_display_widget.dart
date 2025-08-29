@@ -7,6 +7,9 @@ import 'package:movie_db/data/models/movie_model.dart';
 import 'package:movie_db/features/movie_list/presentation/widgets/movie_carousel.dart';
 import 'package:movie_db/features/movie_list/presentation/widgets/movie_grid_widget.dart';
 import 'package:movie_db/features/movie_list/presentation/widgets/movie_list_widget.dart';
+import 'package:movie_db/features/movie_list/presentation/widgets/shimmers/carousel_shimmer.dart';
+import 'package:movie_db/features/movie_list/presentation/widgets/shimmers/grid_shimmer.dart';
+import 'package:movie_db/features/movie_list/presentation/widgets/shimmers/list_shimmer.dart';
 
 class MovieDisplayWidget<
   TBloc extends Bloc<PaginationEvent, PaginationState<MovieModel>>
@@ -27,10 +30,7 @@ class MovieDisplayWidget<
     return BlocBuilder<TBloc, PaginationState<MovieModel>>(
       builder: (context, state) {
         if (state is PaginationInitialPageLoading) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        if (state is PaginationError<MovieModel>) {
-          return Center(child: Text(state.error));
+          _getLoader();
         }
         if (state is PaginationLoaded<MovieModel>) {
           return _getListType(state.items, context);
@@ -58,6 +58,17 @@ class MovieDisplayWidget<
           },
           onAddToFavourite: (movie) {},
         );
+    }
+  }
+
+  Widget _getLoader() {
+    switch (displayType) {
+      case ListDisplayType.list:
+        return ListShimmer();
+      case ListDisplayType.carousel:
+        return CarouselShimmer();
+      case ListDisplayType.grid:
+        return GridShimmer();
     }
   }
 }

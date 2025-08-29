@@ -1,3 +1,4 @@
+import 'package:movie_db/data/local/app_database.dart';
 import 'package:movie_db/features/movie_detail/domain/entity/genres.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -17,4 +18,10 @@ class GenresModel extends Genres {
   }
 
   Genres toEntity() => Genres(id: id, name: name);
+
+  GenreTable toTable() => GenreTable(id: id, name: name);
+
+  factory GenresModel.fromTable(GenreTable table) {
+    return GenresModel(id: table.id, name: table.name);
+  }
 }

@@ -9,6 +9,7 @@ import 'package:movie_db/features/movie_list/presentation/bloc/get_popular_movie
 import 'package:movie_db/features/movie_list/presentation/bloc/get_top_rated_movies_bloc.dart';
 import 'package:movie_db/features/movie_list/presentation/bloc/get_upcoming_movies_bloc.dart';
 import 'package:movie_db/features/movie_list/presentation/widgets/movie_display_widget.dart';
+import 'package:movie_db/widgets/common_scaffold.dart';
 import 'package:movie_db/widgets/glassmorphic_container.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -35,27 +36,23 @@ class HomeScreen extends StatelessWidget {
               sl<GetUpcomingMoviesBloc>()..add(PaginationFetch()),
         ),
       ],
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          scrolledUnderElevation: 0,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 12), // spacing from edge
-              child: GlassmorphicContainer(
-                shape: BoxShape.circle,
-                child: IconButton(
-                  onPressed: () {
-                    context.push('/search-movies');
-                  },
-                  icon: const Icon(Icons.search, size: 30, color: Colors.white),
-                ),
+      child: BubbleBackgroundScaffold(
+        extendBodyBehindAppbar: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: GlassmorphicContainer(
+              shape: BoxShape.circle,
+              child: IconButton(
+                onPressed: () {
+                  context.push('/search-movies');
+                },
+                icon: const Icon(Icons.search, size: 30, color: Colors.white),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
+
         body: MediaQuery.removePadding(
           context: context,
           removeTop: true,
@@ -81,6 +78,15 @@ class HomeScreen extends StatelessWidget {
                 onSeeAllClicked: () {
                   context.push('/upcoming-movies');
                 },
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: ElevatedButton(
+                  onPressed: () {
+                    context.push('/favourites');
+                  },
+                  child: Text("See Favourites"),
+                ),
               ),
             ],
           ),

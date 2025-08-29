@@ -32,6 +32,7 @@ MovieDetailModel _$MovieDetailModelFromJson(Map<String, dynamic> json) =>
       video: json['video'] as bool?,
       voteAverage: (json['vote_average'] as num?)?.toDouble(),
       voteCount: (json['vote_count'] as num?)?.toInt(),
+      isFavourite: json['is_favourite'] as bool?,
       genres: (json['genres'] as List<dynamic>?)
           ?.map((e) => GenresModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -61,5 +62,6 @@ Map<String, dynamic> _$MovieDetailModelToJson(MovieDetailModel instance) =>
       'runtime': instance.runtime,
       'status': instance.status,
       'tagline': instance.tagline,
+      'is_favourite': instance.isFavourite,
       'genres': instance.genres?.map((e) => e.toJson()).toList(),
     };

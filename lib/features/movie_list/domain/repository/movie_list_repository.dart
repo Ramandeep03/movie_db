@@ -11,4 +11,6 @@ abstract class MovieListRepository {
   Future<Either<Failure, BaseResponse<List<Movie>>>> getTopRatedMovies();
 
   Future<Either<Failure, BaseResponse<List<Movie>>>> getUpcomingMovies();
+
+  Future<Either<Failure, List<Movie>>> getFavouriteMovies();
 }

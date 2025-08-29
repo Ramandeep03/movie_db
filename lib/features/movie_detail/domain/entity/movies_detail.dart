@@ -11,6 +11,7 @@ class MoviesDetail extends Movie {
   final String? status;
   final String? tagline;
   final List<Genres>? genres;
+  final bool? isFavourite;
 
   MoviesDetail({
     super.adult,
@@ -36,5 +37,21 @@ class MoviesDetail extends Movie {
     this.status,
     this.tagline,
     this.genres,
+    this.isFavourite,
   });
+
+  @override
+  List<Object?> get props => [
+    ...super.props,
+    belongToCollection,
+    budget,
+    homePage,
+    imdbId,
+    revenue,
+    runtime,
+    status,
+    tagline,
+    genres,
+    isFavourite,
+  ];
 }

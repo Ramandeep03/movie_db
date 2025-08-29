@@ -1,16 +1,78 @@
-# movie_db
+# 🚀 Flutter Project
 
-A new Flutter project.
+A modern Flutter application with clean architecture for Movie DB.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📦 Flutter Version
 
-A few resources to get you started if this is your first Flutter project:
+This project was built and tested with:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```bash
+Flutter 3.35.1 • Dart 3.9.0
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Make sure you are using the correct Flutter version to avoid compatibility issues.
+You can manage versions with [fvm](https://fvm.app/).
+
+---
+
+## 📚 Packages Used
+
+Some of the main dependencies:
+
+* **State Management**: flutter\_bloc
+* **Networking**: dio / retrofit
+* **Local Storage**: drift
+* **Others**: dotenv
+
+See the complete list in [`pubspec.yaml`](./pubspec.yaml).
+
+---
+
+
+## 🔑 Environment Variables
+
+This project uses a `.env` file for API keys and configuration.
+Create a `.env` file in the root directory:
+
+```env
+# API Keys
+BASE_URL=https://api.example.com
+API_KEY=your_api_key_here
+
+```
+
+👉 Never commit your `.env` file to Git.
+Instead, add `.env.example` with dummy values for contributors.
+
+---
+
+## ⚙️ Setup & Installation
+
+1. **Clone the repo**
+
+   ```bash
+   git clone https://github.com/your-username/your-repo.git
+   cd your-repo
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   flutter pub get
+   ```
+
+3. **Create `.env` file**
+
+   * Copy `.env.example` to `.env`
+   * Fill in the required keys
+
+4. **Run the app**
+
+   ```bash
+   flutter run
+   ```
+
+---
+

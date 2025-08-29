@@ -1,8 +1,9 @@
 import 'dart:ui';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_db/core/constants/end_points.dart';
 import 'package:movie_db/data/models/movie_model.dart';
+import 'package:movie_db/widgets/cached_image_widget.dart';
 
 class SliderMovieWidget extends StatelessWidget {
   const SliderMovieWidget({
@@ -21,12 +22,12 @@ class SliderMovieWidget extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        CachedNetworkImage(
-          imageUrl: 'https://image.tmdb.org/t/p/original${movie.posterPath}',
-          fit: BoxFit.cover,
+        CachedImageWidget(
+          url: '${EndPoints.imageUrl}${movie.posterPath}',
+          boxFit: BoxFit.cover,
         ),
         Container(
-          decoration: BoxDecoration(color: Colors.black.withOpacity(0.5)),
+          decoration: BoxDecoration(color: Colors.black.withOpacity(0.4)),
         ),
         ImageFiltered(
           imageFilter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
@@ -37,8 +38,9 @@ class SliderMovieWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
+              spacing: 16,
               mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch, // full width
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
                   movie.title ?? '',
@@ -49,21 +51,12 @@ class SliderMovieWidget extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () => onViewDetails(movie),
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50), // make tall & wide
+                    minimumSize: const Size.fromHeight(50),
                   ),
                   child: const Text("View Details"),
-                ),
-                const SizedBox(height: 12),
-                OutlinedButton(
-                  onPressed: () => onAddToFavourite(movie),
-                  style: OutlinedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50), // full width
-                  ),
-                  child: const Text("Add to Favourite"),
                 ),
               ],
             ),

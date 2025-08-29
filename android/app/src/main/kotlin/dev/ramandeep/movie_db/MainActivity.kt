@@ -1,4 +1,4 @@
-package dev.ramandeep.movie_db
+package dev.ramandeep.movieDB
 
 import io.flutter.embedding.android.FlutterActivity
 

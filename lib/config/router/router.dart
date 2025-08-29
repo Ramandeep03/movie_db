@@ -7,6 +7,7 @@ import 'package:movie_db/features/movie_detail/presentation/screens/movie_detail
 import 'package:movie_db/features/movie_list/presentation/bloc/get_now_playing_movies_bloc.dart';
 import 'package:movie_db/features/movie_list/presentation/bloc/get_top_rated_movies_bloc.dart';
 import 'package:movie_db/features/movie_list/presentation/bloc/get_upcoming_movies_bloc.dart';
+import 'package:movie_db/features/movie_list/presentation/screens/favourite_movies_screen.dart';
 import 'package:movie_db/features/movie_list/presentation/screens/home_screen.dart';
 import 'package:movie_db/features/movie_list/presentation/screens/movie_list_screen.dart';
 import 'package:movie_db/features/search_movies/presentation/bloc/search_movie_bloc.dart';
@@ -60,6 +61,14 @@ class AppRouter {
             child: MovieDetailScreen(movieId: int.tryParse(movieId!) ?? 0),
           );
         },
+      ),
+
+      GoRoute(
+        path: '/favourites',
+        builder: (context, state) => BlocProvider<SearchMovieBloc>(
+          create: (context) => sl<SearchMovieBloc>(),
+          child: FavouriteMoviesScreen(),
+        ),
       ),
     ],
   );

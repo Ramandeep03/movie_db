@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_db/core/bloc/pagination_bloc/pagination_bloc.dart';
 import 'package:movie_db/data/models/movie_model.dart';
 import 'package:movie_db/features/movie_list/presentation/widgets/movie_grid_widget.dart';
+import 'package:movie_db/widgets/common_scaffold.dart';
 
 class MovieListScreen<
   TBloc extends Bloc<PaginationEvent, PaginationState<MovieModel>>
@@ -74,8 +75,8 @@ class _MovieListScreenState<
   Widget build(BuildContext context) {
     return BlocProvider<TBloc>.value(
       value: bloc,
-      child: Scaffold(
-        appBar: AppBar(title: Text(widget.title)),
+      child: BubbleBackgroundScaffold(
+        title: widget.title,
         body: BlocBuilder<TBloc, PaginationState<MovieModel>>(
           builder: (context, state) {
             if (state is PaginationInitialPageLoading<MovieModel>) {

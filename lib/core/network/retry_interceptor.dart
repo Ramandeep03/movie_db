@@ -8,30 +8,34 @@ class RetryOnConnectionChangeInterceptor extends Interceptor {
 
   @override
   Future onError(DioError err, ErrorInterceptorHandler handler) async {
+    // Retry only for connection errors
+    if (err.type != DioErrorType.connectionError &&
+        err.type != DioErrorType.connectionTimeout &&
+        err.type != DioErrorType.unknown) {
+      return handler.next(err);
+    }
+
     var attempt = 0;
 
     while (attempt < retries) {
       attempt++;
       try {
-        final response = await dio.request(
-          err.requestOptions.path,
-          cancelToken: err.requestOptions.cancelToken,
-          data: err.requestOptions.data,
-          onReceiveProgress: err.requestOptions.onReceiveProgress,
-          onSendProgress: err.requestOptions.onSendProgress,
-          queryParameters: err.requestOptions.queryParameters,
-          options: Options(
-            method: err.requestOptions.method,
-            headers: err.requestOptions.headers,
+        // ⚡ Make a fresh request without triggering interceptors again
+        final response = await dio.fetch(
+          err.requestOptions.copyWith(
+            extra: {
+              "retries_disabled": true, // mark so we can skip interceptor
+            },
           ),
         );
         return handler.resolve(response);
-      } catch (_) {
+      } catch (e) {
         if (attempt >= retries) {
           return handler.next(err);
         }
       }
     }
+
     return handler.next(err);
   }
 }

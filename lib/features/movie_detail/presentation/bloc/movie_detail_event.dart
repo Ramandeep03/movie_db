@@ -7,3 +7,8 @@ class GetMovieDetail extends MovieDetailEvent {
 
   GetMovieDetail({required this.movieId});
 }
+
+class UpdateFavoriteStatus extends MovieDetailEvent {
+  final MovieDetailModel model;
+  UpdateFavoriteStatus({required this.model});
+}
